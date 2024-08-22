@@ -2,29 +2,26 @@
 #define __MY_GETOPT_H_
 
 #include <stdlib.h>
-#include <my_libasm.h>
+#include <cli_libasm.h>
 #include <stdbool.h>
-
-#ifdef __cplusplus
-extern "C" {
-#endif
 
 #ifndef STRUCT_MY_GETOPT
 #define STRUCT_MY_GETOPT
-struct my_getopt_s
+typedef struct s_my_getopt
 {
     int         index;
     int         pos;
     bool*       bool_arr; // activate each option
     int         nbr_str;
-    bool*       state;
-    bool        exit_status;
     int         str_pos;
     char**      str_arr;
-};
-typedef struct my_getopt_s my_getopt_t;
+    int*        file_size; //dummy
+    bool*       state;
+    bool        exit_status;
+} my_getopt_t;
 #endif
 
+#define VALID_ARG "-l"
 #define BADCHAR                 (int)'?'
 #define BADARG                  (int)':'
 #define __STAR_CHAR__           '*'
@@ -42,9 +39,5 @@ void    free_opt(my_getopt_t* getopt_ptr);
 void    init_getopt(my_getopt_t* getopt_ptr, const char* valid_args);
 int     my_getopt(char** argv, const char* valid_args, my_getopt_t* getopt_ptr);
 void    flag_state(char opt, my_getopt_t *getopt_ptr, char** argv);
-
-#ifdef __cplusplus
-}
-#endif
 
 #endif

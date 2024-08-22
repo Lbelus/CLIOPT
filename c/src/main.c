@@ -2,7 +2,7 @@
 
 int main(int argc, char** argv)
 {
-    int             cmd_count   = 0;
+    int             cmd_count   = 1;
     int             fd          = STDIN_FILENO;
     char*           str         = NULL;
     char**          tokens      = NULL;
@@ -13,8 +13,7 @@ int main(int argc, char** argv)
     {
         getopt_ptr = malloc(sizeof(my_getopt_t));
         init_getopt(getopt_ptr, VALID_ARG);
-        cmd_count = count_cmd(str);
-        tokens = my_strtok(str , 1, __SPACE_CHAR__);
+        tokens = my_strtok(str , &cmd_count, __SPACE_CHAR__);
         flag_parser(cmd_count, tokens, VALID_ARG, getopt_ptr);
         execute_cmd(getopt_ptr);
         if (getopt_ptr->exit_status == true)
@@ -24,6 +23,7 @@ int main(int argc, char** argv)
         free_opt(getopt_ptr);
         free(tokens);
         free(str);
+        cmd_count = 1;
     }
     return EXIT_SUCCESS;
 }

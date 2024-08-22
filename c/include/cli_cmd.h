@@ -1,7 +1,7 @@
 #ifndef _MY_CMD_FN_PTR_
 #define _MY_CMD_FN_PTR_
 
-#include <main_header.h>
+#include <common_header.h>
 #include <stdio.h>
 
 #define _PRINT_FIRST_ "PRINT_FIRST"

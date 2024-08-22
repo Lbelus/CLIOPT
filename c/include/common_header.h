@@ -9,6 +9,6 @@
 #include <cli_parser.h>
 #include <cli_cgetopt.h>
 #include <cli_cmd.h>
-#include <non_standard_header.h>
+#include <cli_nstd.h>
 
 #endif
