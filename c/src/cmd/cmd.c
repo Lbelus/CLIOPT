@@ -1,12 +1,5 @@
 #include <common_header.h>
 
-cmd_ptr_t cmd_ptr_map[] = {
-    {_PRINT_FIRST_, print_first},
-    {_PRINT_SECOND_, print_second},
-    {_QUIT_, quit},
-    {NULL, NULL}
-};
-
 int print_first(my_getopt_t* getopt_ptr)
 {
     (void)getopt_ptr;
@@ -28,10 +21,9 @@ int quit(my_getopt_t* getopt_ptr)
     return EXIT_SUCCESS;
 }
 
-int execute_cmd(my_getopt_t* getopt_ptr)
+int execute_cmd(my_getopt_t* getopt_ptr, cmd_ptr_t cmd_ptr_map[])
 {
     cmd_ptr_t* cf_ptr = cmd_ptr_map;
-
     while (cf_ptr->cmd != NULL)
     {
         if (_my_strcmp(getopt_ptr->str_arr[0], cf_ptr->cmd) == 0)

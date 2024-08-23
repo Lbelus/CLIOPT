@@ -21,6 +21,6 @@ typedef struct cmd_ptr_s cmd_ptr_t;
 int print_first(my_getopt_t* getopt_ptr);
 int print_second(my_getopt_t* getopt_ptr);
 int quit(my_getopt_t* getopt_ptr);
-int execute_cmd(my_getopt_t* getopt_ptr);
+int execute_cmd(my_getopt_t* getopt_ptr, cmd_ptr_t cmd_ptr_map[]);
 
 #endif

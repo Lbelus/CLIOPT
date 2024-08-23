@@ -11,11 +11,10 @@ typedef struct s_my_getopt
 {
     int         index;
     int         pos;
-    bool*       bool_arr; // activate each option
+    bool*       bool_arr;
     int         nbr_str;
     int         str_pos;
     char**      str_arr;
-    int*        file_size; //dummy
     bool*       state;
     bool        exit_status;
 } my_getopt_t;
