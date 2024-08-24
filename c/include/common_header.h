@@ -11,4 +11,6 @@
 #include <cli_cmd.h>
 #include <cli_nstd.h>
 
+int cliopt(cmd_ptr_t cmd_ptr_map[]);
+
 #endif
