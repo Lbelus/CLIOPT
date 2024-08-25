@@ -22,7 +22,7 @@ int quit(my_getopt_t* getopt_ptr)
     return EXIT_SUCCESS;
 }
 
-#include <string.h>
+// #include <string.h>
 
 char* concat_string(int argc, ...)
 {
@@ -42,29 +42,13 @@ char* concat_string(int argc, ...)
     index = 0;
     while (index < argc)
     {
-        strcat(result, va_arg(ap, char*));
+        _my_strcat(result, va_arg(ap, char*));
         index += 1;
     }
     return result;
 }
 
-int map_len(cmd_ptr_t cmd_ptr_map[])
-{
-    size_t size         = 0;
-    size_t index        = 0;
-    cmd_ptr_t* cf_ptr   = cmd_ptr_map;
-    while (cf_ptr->cmd != NULL)
-    {
-        size += _my_strlen(cf_ptr->cmd) + 1;
-        size += _my_strlen(cf_ptr->flags) + 1 ;
-        size += _my_strlen(cf_ptr->description) + 1;
-        size += 4;
-        cf_ptr++;
-    }
-    return size;
-}
-
-char* help(cmd_ptr_t cmd_ptr_map[])
+int set_help(cmd_ptr_t cmd_ptr_map[])
 {
     cmd_ptr_t* cf_ptr = cmd_ptr_map;
     char* cmd_str = NULL;
@@ -73,21 +57,63 @@ char* help(cmd_ptr_t cmd_ptr_map[])
     size_t size = 0;
     while (cf_ptr->cmd != NULL)
     {
-        cmd_str = concat_string(6, 
-        cf_ptr->cmd,
-        " ",
-        cf_ptr->flags,
-        " ",
-        cf_ptr->description,
-        "\n"
-        );
-        size += _my_strlen(cmd_str) + 100;
-        map_str = realloc(map_str, size);
-        strcat(map_str, cmd_str);
-        free(cmd_str);
+        if (cf_ptr->description != NULL)
+        {
+            cmd_str = concat_string(6, 
+            cf_ptr->cmd,
+            " ",
+            cf_ptr->flags,
+            " ",
+            cf_ptr->description,
+            "\n"
+            );
+            size += _my_strlen(cmd_str) + 100;
+            map_str = realloc(map_str, size);
+            _my_strcat(map_str, cmd_str);
+            free(cmd_str);
+        }
         cf_ptr++;
     }
-    return map_str;
+    cf_ptr = cmd_ptr_map;
+    while (cf_ptr->cmd != NULL)
+    {
+        if (_my_strcmp(_HELP_, cf_ptr->cmd) == 0)
+        {
+            cf_ptr->data = map_str;
+            return EXIT_SUCCESS;
+        }
+        cf_ptr++;
+    }
+    return EXIT_FAILURE;
+}
+
+int help(cmd_ptr_t* cf_ptr)
+{
+    while (cf_ptr->cmd != NULL)
+    {
+        if (_my_strcmp(_HELP_, cf_ptr->cmd) == 0)
+        {
+            printf("%s", (char*)cf_ptr->data);
+            return EXIT_SUCCESS;
+        }
+        cf_ptr++;
+    }
+    return EXIT_FAILURE;
+}
+
+int free_help(cmd_ptr_t cmd_ptr_map[])
+{
+    cmd_ptr_t* cf_ptr = cmd_ptr_map;
+    while (cf_ptr->cmd != NULL)
+    {
+        if (_my_strcmp(_HELP_, cf_ptr->cmd) == 0)
+        {
+            free(cf_ptr->data);
+            return EXIT_SUCCESS;
+        }
+        cf_ptr++;
+    }
+    return EXIT_FAILURE;
 }
 
 char* select_flags(char* token, cmd_ptr_t cmd_ptr_map[])
@@ -113,7 +139,16 @@ int execute_cmd(my_getopt_t* getopt_ptr, cmd_ptr_t cmd_ptr_map[])
     {
         if (_my_strcmp(getopt_ptr->str_arr[0], cf_ptr->cmd) == 0)
         {
-            return cf_ptr->func_ptr(getopt_ptr);
+            if (cf_ptr->data == NULL)
+            {
+                return cf_ptr->func_ptr(getopt_ptr);
+            }
+            else
+            {
+                cmd_ptr_t* cf_ptr01 = cmd_ptr_map;
+                return user_defined_cmd1(cf_ptr01)(cf_ptr01);
+
+            }
         }
         cf_ptr++;
     }
