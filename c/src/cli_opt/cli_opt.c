@@ -1,14 +1,24 @@
 #include <common_header.h>
 
+
+void display_new_line(const char* str)
+{
+    printf("\r\033[K%s", str);
+    fflush(stdout);
+}
+
+
 int cliopt(cmd_ptr_t cmd_ptr_map[])
 {
-    int             cmd_count   = 1;
-    int             fd          = STDIN_FILENO;
-    char*           str         = NULL;
-    char**          tokens      = NULL;
-    my_getopt_t*    getopt_ptr  = NULL;
+    int             cmd_count       = 1;
+    int             fd              = STDIN_FILENO;
+    char*           str             = NULL;
+    char**          tokens          = NULL;
+    my_getopt_t*    getopt_ptr      = NULL;
+    char*           display_text    = set_display_text(cmd_ptr_map);
     set_help(cmd_ptr_map);
     init_my_readline();
+    display_new_line(display_text);
     while ((str = my_readline(fd)) != NULL)
     {
         getopt_ptr = malloc(sizeof(my_getopt_t));
@@ -25,6 +35,7 @@ int cliopt(cmd_ptr_t cmd_ptr_map[])
         free(tokens);
         free(str);
         cmd_count = 1;
+        display_new_line(display_text);
     }
     free_help(cmd_ptr_map);
     return EXIT_SUCCESS;    
