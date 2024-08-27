@@ -15,6 +15,17 @@ int print_second(my_getopt_t* getopt_ptr)
     return EXIT_SUCCESS;
 }
 
+int env(my_getopt_t* getopt_ptr, cmd_ptr_t* cf_ptr)
+{
+    char **env = cf_ptr->data;
+    while (*env)
+    {
+        printf("%s\n", *env);
+        env++;
+    }
+    return EXIT_SUCCESS;
+}
+
 int quit(my_getopt_t* getopt_ptr)
 {
     getopt_ptr->exit_status = true;
@@ -144,12 +155,21 @@ char* set_display_text(cmd_ptr_t cmd_ptr_map[])
     return NULL;
 }
 
-int generic_ft(char* ft_designation, cmd_ptr_t cmd_ptr_map[])
+int generic_ft1(char* ft_designation, cmd_ptr_t cmd_ptr_map[])
 {
     if (_my_strcmp(ft_designation, _HELP_) == 0)
     {
         cmd_ptr_t* cf_ptr = cmd_ptr_map;
         return user_defined_cmd1(cf_ptr)(cf_ptr);
+    }
+    return EXIT_FAILURE;
+}
+
+int generic_ft2(char* ft_designation, my_getopt_t* getopt_ptr, cmd_ptr_t* cf_ptr)
+{
+    if (_my_strcmp(ft_designation, _ENV_) == 0)
+    {
+        return user_defined_cmd2(getopt_ptr, cf_ptr)(getopt_ptr, cf_ptr);
     }
     return EXIT_FAILURE;
 }
@@ -168,7 +188,14 @@ int execute_cmd(my_getopt_t* getopt_ptr, cmd_ptr_t cmd_ptr_map[])
             }
             else
             {
-                return generic_ft(getopt_ptr->str_arr[0], cmd_ptr_map); 
+                if (generic_ft1(getopt_ptr->str_arr[0], cmd_ptr_map) == EXIT_SUCCESS)
+                {
+                    return EXIT_SUCCESS;
+                }
+                else
+                {
+                    return generic_ft2(getopt_ptr->str_arr[0], getopt_ptr, cf_ptr);
+                }
             }
         }
         cf_ptr++;

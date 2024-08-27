@@ -1,12 +1,10 @@
 #include <common_header.h>
 
-
 void display_new_line(const char* str)
 {
     printf("\r\033[K%s", str);
     fflush(stdout);
 }
-
 
 int cliopt(cmd_ptr_t cmd_ptr_map[])
 {

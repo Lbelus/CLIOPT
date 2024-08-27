@@ -11,7 +11,6 @@
 #define _HELP_          "help"
 #define _DISPLAY_       "display"
 #define _ENV_           "env"
-
 // #ifndef _ARGS_UNION_
 // #define _ARGS_UNION_
 // union args_union
@@ -42,10 +41,11 @@ typedef struct cmd_ptr_s cmd_ptr_t;
     default: NULL \
 )
 
-// #define user_defined_cmd2(a, b) _Generic((a), \
-//     my_getopt_t*: help, \
-//     cmd_ptr_t*: help \
-// )(a, b)
+#define user_defined_cmd2(a, b) _Generic((a), \
+    my_getopt_t*: env, \
+    cmd_ptr_t*: env, \
+    default: NULL \
+)
 
 // #define add(...) GET_MACRO(__VA_ARGS__, user_defined_cmd2, user_defined_cmd1)(__VA_ARGS__)
 char*   set_display_text(cmd_ptr_t cmd_ptr_map[]);
