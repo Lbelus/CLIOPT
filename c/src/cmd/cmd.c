@@ -155,26 +155,6 @@ char* set_display_text(cmd_ptr_t cmd_ptr_map[])
     return NULL;
 }
 
-int generic_ft1(char* ft_designation, cmd_ptr_t cmd_ptr_map[])
-{
-    if (_my_strcmp(ft_designation, _HELP_) == 0)
-    {
-        cmd_ptr_t* cf_ptr = cmd_ptr_map;
-        return user_defined_cmd1(cf_ptr)(cf_ptr);
-    }
-    return EXIT_FAILURE;
-}
-
-int generic_ft2(char* ft_designation, my_getopt_t* getopt_ptr, cmd_ptr_t* cf_ptr)
-{
-    if (_my_strcmp(ft_designation, _ENV_) == 0)
-    {
-        return user_defined_cmd2(getopt_ptr, cf_ptr)(getopt_ptr, cf_ptr);
-    }
-    return EXIT_FAILURE;
-}
-
-
 int execute_cmd(my_getopt_t* getopt_ptr, cmd_ptr_t cmd_ptr_map[])
 {
     cmd_ptr_t* cf_ptr = cmd_ptr_map;
@@ -188,13 +168,13 @@ int execute_cmd(my_getopt_t* getopt_ptr, cmd_ptr_t cmd_ptr_map[])
             }
             else
             {
-                if (generic_ft1(getopt_ptr->str_arr[0], cmd_ptr_map) == EXIT_SUCCESS)
+                if (_generic_fn(cf_ptr)(cf_ptr) == EXIT_SUCCESS)
                 {
                     return EXIT_SUCCESS;
                 }
                 else
                 {
-                    return generic_ft2(getopt_ptr->str_arr[0], getopt_ptr, cf_ptr);
+                    return _generic_fn(getopt_ptr, cf_ptr)(getopt_ptr, cf_ptr);
                 }
             }
         }
