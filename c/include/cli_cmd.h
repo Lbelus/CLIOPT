@@ -5,21 +5,12 @@
 #include <stdio.h>
 #include <stdarg.h>
 
-#define _PRINT_FIRST_   "PRINT_FIRST"
-#define _PRINT_SECOND_  "PRINT_SECOND"
+#define _PRINT_FIRST_   "ex1"
+#define _PRINT_SECOND_  "ex2"
 #define _QUIT_          "quit"
 #define _HELP_          "help"
 #define _DISPLAY_       "display"
 #define _ENV_           "env"
-// #ifndef _ARGS_UNION_
-// #define _ARGS_UNION_
-// union args_union
-// {
-//     my_getopt_t* getopt_ptr,
-//     cmd_ptr_t cmd_ptr_map[]
-// };
-// typedef union args_union args_union_t
-// #endif
 
 #ifndef _CMD_PTR_S_
 #define _CMD_PTR_S_
@@ -34,7 +25,7 @@ struct cmd_ptr_s
 typedef struct cmd_ptr_s cmd_ptr_t;
 #endif
 
-#define GET_MACRO(_1, _2, NAME, ...) NAME
+#define GET_MACRO(_1, _2, _3, _4, NAME, ...) NAME
 
 #define __cmd1__(a) _Generic((a), \
     cmd_ptr_t*: help, \
