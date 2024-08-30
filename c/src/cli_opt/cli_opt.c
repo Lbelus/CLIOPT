@@ -22,9 +22,8 @@ int cliopt(cmd_ptr_t cmd_ptr_map[])
         getopt_ptr = malloc(sizeof(my_getopt_t));
         tokens = my_strtok(str , &cmd_count, __SPACE_CHAR__);
         char* valid_flags = select_flags(tokens[1], cmd_ptr_map);
-        printf("flags: %s\n", VALID_ARG);
-        init_getopt(getopt_ptr, VALID_ARG);
-        flag_parser(cmd_count, tokens, VALID_ARG, getopt_ptr);
+        init_getopt(getopt_ptr, valid_flags);
+        flag_parser(cmd_count, tokens, valid_flags, getopt_ptr);
         execute_cmd(getopt_ptr, cmd_ptr_map);
         if (getopt_ptr->exit_status == true)
         {
@@ -36,6 +35,7 @@ int cliopt(cmd_ptr_t cmd_ptr_map[])
         cmd_count = 1;
         display_new_line(display_text);
     }
+    free_env_cpy(cmd_ptr_map);
     free_help(cmd_ptr_map);
-    return EXIT_SUCCESS;    
+    return EXIT_SUCCESS;
 }
