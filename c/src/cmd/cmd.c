@@ -70,11 +70,24 @@ char** copy_env(char** env)
 int env(my_getopt_t* getopt_ptr, cmd_ptr_t* cf_ptr)
 {
     char **env = cf_ptr->data;
-    while (*env)
+    if (is_flag_active(getopt_ptr, 'l'))
     {
-        printf("%s\n", *env);
-        env++;
+        printf("l is true");
+        while (*env)
+        {
+            printf("%s\n", *env);
+            env++;
+        }
     }
+    else if (is_flag_active(getopt_ptr, 'u'))
+    {
+        printf("u is true\n");
+    }
+    else if (is_flag_active(getopt_ptr, 'd'))
+    {
+        printf("d is true\n");
+
+    }   
     return EXIT_SUCCESS;
 }
 

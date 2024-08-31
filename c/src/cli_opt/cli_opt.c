@@ -1,5 +1,7 @@
 #include <common_header.h>
 
+
+
 void display_new_line(const char* str)
 {
     printf("\r\033[K%s", str);
