@@ -5,6 +5,8 @@
 #include <cli_libasm.h>
 #include <stdbool.h>
 
+#define MAX_INPUT_TOKENS 250
+#define USE_TOKEN_QUEUE true
 #define BITMAP_SIZE 32
 
 #ifndef _BITMAP_S_
@@ -16,18 +18,61 @@ struct bitmap_s
 typedef struct bitmap_s bmp_t;
 #endif
 
+#ifndef STACK_S
+#define STACK_S
+struct stack_s
+{
+    void* data[MAX_INPUT_TOKENS];
+    int top;
+};
+typedef struct stack_s stack_t;
+#endif
+
+#define OVERFLOW "Stack is overflowing"
+#define SIZE_OVERFLOW 20
+#define UNDERFLOW "Stack is underflowing"
+#define SIZE_UNDERFLOW 21
+
+int     push(stack_t* stack, void* token);
+void*   pop(stack_t* stack);
+bool    is_empty(stack_t* stack);
+
+#ifndef QUEUE_S
+#define QUEUE_S
+struct queue_s
+{
+    stack_t s1;
+    stack_t s2;
+    void* front;
+    bool (*is_empty) (stack_t*);
+    int (*push) (stack_t*, void*);
+    void* (*pop) (stack_t*);
+};
+typedef struct queue_s queue_t;
+#endif
+
+
+
+int     enqueue(queue_t* queue, void* token);
+void*   dequeue(queue_t* queue);
+void*   peek(queue_t* queue);
+bool    is_q_empty(queue_t* queue);
+queue_t new_queue();
+
+
 #ifndef STRUCT_MY_GETOPT
 #define STRUCT_MY_GETOPT
 typedef struct s_my_getopt
 {
     int     index;
     int     pos;
-    bmp_t   bmp[BITMAP_SIZE];
     int     nbr_str;
     int     str_pos;
     char**  str_arr;
     bool*   state;
     bool    exit_status;
+    bmp_t   bmp[BITMAP_SIZE];
+    queue_t queue;
 } my_getopt_t;
 #endif
 
