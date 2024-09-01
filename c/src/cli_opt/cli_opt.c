@@ -25,7 +25,7 @@ int cliopt(cmd_ptr_t cmd_ptr_map[])
         tokens = my_strtok(str , &cmd_count, __SPACE_CHAR__);
         char* valid_flags = select_flags(tokens[1], cmd_ptr_map);
         init_getopt(getopt_ptr, valid_flags);
-        flag_parser(cmd_count, tokens, valid_flags, getopt_ptr);
+        cgetopt(cmd_count, (const char**)tokens, valid_flags, getopt_ptr);
         execute_cmd(getopt_ptr, cmd_ptr_map);
         if (getopt_ptr->exit_status == true)
         {
