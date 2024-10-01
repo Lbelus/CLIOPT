@@ -11,6 +11,8 @@
 #define _HELP_          "help"
 #define _DISPLAY_       "display"
 #define _ENV_           "env"
+#define _BIN_           "bin"
+
 
 #ifndef _CMD_PTR_S_
 #define _CMD_PTR_S_
