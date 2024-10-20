@@ -105,7 +105,7 @@ char* select_flags(char* token, cmd_ptr_t cmd_ptr_map[])
         }
         cf_ptr++;
     }
-    return NULL;
+    return cf_ptr->flags;
 }
 
 char* set_display_text(cmd_ptr_t cmd_ptr_map[])

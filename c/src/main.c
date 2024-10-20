@@ -13,7 +13,7 @@ int main(void)
         { _PRINT_FIRST_,     "-laq", "It prints first",          print_first,               NULL }, // standard getopt_t function
         { _PRINT_SECOND_,    "-laq", "It prints second",         print_second,              NULL }, // standard getopt_t function
         { _QUIT_,            "-",    "Exit the program safely",  quit,                      NULL },
-        { NULL,              NULL,   NULL,                       NULL,                      NULL } // NULL terminator
+        { NULL,              "-",    NULL,                       NULL,                      NULL } // NULL terminator
     };
     cliopt(command_descriptor);
     return EXIT_SUCCESS;
