@@ -1,16 +1,11 @@
 #ifndef _MY_CMD_FN_PTR_
 #define _MY_CMD_FN_PTR_
 
-#include <common_header.h>
 #include <stdio.h>
 #include <stdarg.h>
 
-#define _PRINT_FIRST_   "ex1"
-#define _PRINT_SECOND_  "ex2"
 #define _QUIT_          "quit"
-#define _HELP_          "help"
 #define _DISPLAY_       "display"
-#define _ENV_           "env"
 #define _BIN_           "bin"
 
 
@@ -26,6 +21,8 @@ struct cmd_ptr_s
 };
 typedef struct cmd_ptr_s cmd_ptr_t;
 #endif
+
+#include <cli_init.h>  // Call header after struct declaration.
 
 #define GET_MACRO(_1, _2, _3, _4, NAME, ...) NAME
 
@@ -50,17 +47,8 @@ typedef struct cmd_ptr_s cmd_ptr_t;
 
 #define _generic_fn(...) GET_MACRO(__VA_ARGS__, __cmd4__, __cmd3__,__cmd2__, __cmd1__)(__VA_ARGS__)
 
-int     env(my_getopt_t* getopt_ptr, cmd_ptr_t* cf_ptr);
-char**  copy_env(char** env);
-void    free_env_cpy(cmd_ptr_t cmd_ptr_map[]);
-char*   set_display_text(cmd_ptr_t cmd_ptr_map[]);
-int     set_help(cmd_ptr_t cmd_ptr_map[]);
-int     help(cmd_ptr_t* cf_ptr);
-int     free_help(cmd_ptr_t cmd_ptr_map[]);
-int     quit(my_getopt_t* getopt_ptr);
-int     print_first(my_getopt_t* getopt_ptr);
-int     print_second(my_getopt_t* getopt_ptr);
+/* core funcs */
 int     execute_cmd(my_getopt_t* getopt_ptr, cmd_ptr_t cmd_ptr_map[]);
-char*   select_flags(char* token, cmd_ptr_t cmd_ptr_map[]);
+int     quit(my_getopt_t* getopt_ptr);
 
 #endif

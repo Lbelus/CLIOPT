@@ -1,7 +1,6 @@
 #ifndef MY_LIBASM_
 #define MY_LIBASM_
 #include <stddef.h>
-// Declare the assembly function
 
     int      _my_strlen(const char* str);
     char*    _my_strchr(const char* str, char ch);
