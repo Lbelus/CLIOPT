@@ -50,6 +50,7 @@ typedef struct cmd_ptr_s cmd_ptr_t;
 
 #define _generic_fn(...) GET_MACRO(__VA_ARGS__, __cmd4__, __cmd3__,__cmd2__, __cmd1__)(__VA_ARGS__)
 
+int     env(my_getopt_t* getopt_ptr, cmd_ptr_t* cf_ptr);
 char**  copy_env(char** env);
 void    free_env_cpy(cmd_ptr_t cmd_ptr_map[]);
 char*   set_display_text(cmd_ptr_t cmd_ptr_map[]);

@@ -64,20 +64,20 @@ int set_help(cmd_ptr_t cmd_ptr_map[])
     return EXIT_FAILURE;
 }
 
-int help(cmd_ptr_t* cf_ptr)
-{
-    while (cf_ptr->cmd != NULL)
-    {
-        if (_my_strcmp(_HELP_, cf_ptr->cmd) == 0)
-        {
-            printf("%s", (char*)cf_ptr->data);
-            fflush(stdout);
-            return EXIT_SUCCESS;
-        }
-        cf_ptr++;
-    }
-    return EXIT_FAILURE;
-}
+// int help(cmd_ptr_t* cf_ptr)
+// {
+//     while (cf_ptr->cmd != NULL)
+//     {
+//         if (_my_strcmp(_HELP_, cf_ptr->cmd) == 0)
+//         {
+//             printf("%s", (char*)cf_ptr->data);
+//             fflush(stdout);
+//             return EXIT_SUCCESS;
+//         }
+//         cf_ptr++;
+//     }
+//     return EXIT_FAILURE;
+// }
 
 int free_help(cmd_ptr_t cmd_ptr_map[])
 {
