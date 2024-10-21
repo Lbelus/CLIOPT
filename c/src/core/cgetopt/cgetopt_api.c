@@ -38,7 +38,6 @@ int cgetopt(int argc, const char** argv, const char* valid_args, my_getopt_t* ge
     return result;
 }
 
-
 const char** get_argv(const my_getopt_t* getopt_ptr)
 {
     return getopt_ptr->argv;
