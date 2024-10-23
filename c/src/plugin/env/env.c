@@ -11,23 +11,6 @@ int count_env_var(char** env)
     return count;
 }
 
-char** copy_env(char** env)
-{
-    size_t count = count_env_var(env);
-    char** cpy_env = (char**)malloc(sizeof(char*) * count + 1);
-    size_t index = 0;
-    int len = 0;
-    while (*env != NULL)
-    {
-        len = _my_strlen(*env);
-        cpy_env[index] = (char*)malloc(sizeof(char) * (len + 1));
-        _my_memcpy(cpy_env[index], *env, len + 1);
-        env += 1;
-        index += 1;
-    }
-    cpy_env[count] = NULL;
-    return cpy_env;
-}
 
 int env(my_getopt_t* getopt_ptr, cmd_ptr_t* cf_ptr)
 {
@@ -85,10 +68,28 @@ int add_env_var(char** env_copy, const char* env_var)
     return EXIT_SUCCESS;
 }
 
-int env_var_chr(char** env_copy, const char* env_des)
+char** copy_env(char** env)
+{
+    size_t count = count_env_var(env);
+    char** cpy_env = (char**)malloc(sizeof(char*) * count + 1);
+    size_t index = 0;
+    int len = 0;
+    while (*env != NULL)
+    {
+        len = _my_strlen(*env);
+        cpy_env[index] = (char*)malloc(sizeof(char) * (len + 1));
+        _my_memcpy(cpy_env[index], *env, len + 1);
+        env += 1;
+        index += 1;
+    }
+    cpy_env[count] = NULL;
+    return cpy_env;
+}
+
+int env_var_chr(const char** env_copy, const char* env_des)
 {
     size_t len = _my_strlen(env_des);
-    char **env = env_copy;
+    const char **env = env_copy;
     size_t pos = 0;
     while (*env)
     {
@@ -100,6 +101,13 @@ int env_var_chr(char** env_copy, const char* env_des)
         env++;
     }
     return -1;
+}
+
+char* get_env_var(const char** env_copy, const char* env_des)
+{
+    size_t pos = env_var_chr(env_copy, env_des);
+    char* env_ptr = env_copy[pos];
+    return env_ptr;
 }
 
 int update_env(char** env_copy, const char* env_var)
