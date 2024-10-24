@@ -103,10 +103,10 @@ int env_var_chr(const char** env_copy, const char* env_des)
     return -1;
 }
 
-char* get_env_var(const char** env_copy, const char* env_des)
+const char* get_env_var(const char** env_copy, const char* env_des)
 {
     size_t pos = env_var_chr(env_copy, env_des);
-    char* env_ptr = env_copy[pos];
+    const char* env_ptr = env_copy[pos];
     return env_ptr;
 }
 
@@ -119,7 +119,7 @@ int update_env(char** env_copy, const char* env_var)
         return EXIT_FAILURE;
     }
     int len = _my_strlen(env_var);
-    if ((index = env_var_chr(env_copy, env_des)) >= 0)
+    if ((index = env_var_chr((const char**)env_copy, env_des)) >= 0)
     {
         free(env_copy[index]);
         env_copy[index] = malloc(sizeof(char) * len + 1);
