@@ -6,6 +6,7 @@
 #include <stdio.h>
 #include <sys/wait.h>
 
+#define _PATH_STR_ "PATH"
 
 void cmd_or_exec(char** args)
 
