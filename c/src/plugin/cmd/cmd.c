@@ -1,5 +1,6 @@
-#include <common_header.h>
+#include "./cmd.h"
 
+/*  classic function pointer */
 int quit(my_getopt_t* getopt_ptr)
 {
     getopt_ptr->exit_status = true;
@@ -7,6 +8,7 @@ int quit(my_getopt_t* getopt_ptr)
     return EXIT_SUCCESS;
 }
 
+/* Two arg generic function */
 int execute_cmd(my_getopt_t* getopt_ptr, cmd_ptr_t cmd_ptr_map[])
 {
     cmd_ptr_t* cf_ptr = cmd_ptr_map;

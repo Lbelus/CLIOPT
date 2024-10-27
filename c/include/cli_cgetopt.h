@@ -2,8 +2,10 @@
 #define __MY_GETOPT_H_
 
 #include <stdlib.h>
-#include <cli_libasm.h>
+#include <stdio.h>
 #include <stdbool.h>
+
+#include <cli_libasm.h>
 
 #define BITMAP_SIZE 32
 
@@ -33,7 +35,8 @@ typedef struct s_my_getopt
 } my_getopt_t;
 #endif
 
-#define VALID_ARG "-l"
+#define _DISPLAY_               "display"
+#define VALID_ARG               "-l"
 #define BADCHAR                 (int)'?'
 #define BADARG                  (int)':'
 #define __STAR_CHAR__           '*'

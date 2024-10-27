@@ -1,6 +1,11 @@
 #ifndef _HELP_HEADER_
 #define _HELP_HEADER_
 
+#include <cli_cgetopt.h>
+#include <cli_cmd.h> 
+#include <stdarg.h>
+#include <stdio.h>
+
 #define _HELP_  "help"
 
 /*  help funcs */

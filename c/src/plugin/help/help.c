@@ -1,4 +1,4 @@
-#include <common_header.h>
+#include "./help.h"
 
 char* concat_string(int argc, ...)
 {

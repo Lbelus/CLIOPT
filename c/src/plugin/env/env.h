@@ -1,6 +1,11 @@
 #ifndef _ENV_HEADER_
 #define _ENV_HEADER_
 
+#include <cli_cgetopt.h>
+#include <cli_cmd.h> 
+#include <stdio.h>
+
+
 #define _ENV_ "env"
 
 /* environment funcs */

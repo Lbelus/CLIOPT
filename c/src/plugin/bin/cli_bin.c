@@ -1,13 +1,8 @@
-#include <common_header.h>
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <sys/wait.h>
-#include <unistd.h>
-#include <stdarg.h>
+#include "./cli_bin.h"
 
-#define PATH_MAX 4096
-#define _PATH_STR_ "PATH"
-#define _COLUMN_CHAR_   ':'
+
+int env_var_chr(const char** env_copy, const char* env_des);
+const char* get_env_var(const char** env_copy, const char* env_des);
 
 
 void copy_from(char* dest, char* src, int* pos)
