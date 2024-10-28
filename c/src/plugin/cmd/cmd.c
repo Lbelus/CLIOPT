@@ -18,17 +18,17 @@ int execute_cmd(my_getopt_t* getopt_ptr, cmd_ptr_t cmd_ptr_map[])
         {
             if (cf_ptr->data == NULL)
             {
-                return cf_ptr->func_ptr(getopt_ptr); // run normal command without passing data
+                return cf_ptr->func_ptr(getopt_ptr); // run basic function ptr command
             }
             else
             {
-                if (_generic_fn(cf_ptr)(cf_ptr) == EXIT_SUCCESS) //
+                if (_generic_fn(cf_ptr)(cf_ptr) == EXIT_SUCCESS) // run generic function with one argument (data)
                 {
                     return EXIT_SUCCESS;
                 }
                 else
                 {
-                    return _generic_fn(getopt_ptr, cf_ptr)(getopt_ptr, cf_ptr);
+                    return _generic_fn(getopt_ptr, cf_ptr)(getopt_ptr, cf_ptr); // run generic function with two arguments
                 }
             }
         }
