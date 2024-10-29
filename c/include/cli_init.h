@@ -1,12 +1,7 @@
 #ifndef _INIT_HEADER_
 #define _INIT_HEADER_
 
-#include "../src/plugin/env/env.h"
-#include "../src/plugin/cmd/cmd.h"
-#include "../src/plugin/example_cmd/example.h"
-#include "../src/plugin/help/help.h"
-
-
+#include <plugins.h>
 
 #define COMMANDS \
         /* One arg _GENERIC function with cmd_ptr_t */ \
@@ -21,24 +16,6 @@
         X(CMD_PRINT_SECOND, "ex2",      "-laq", "It prints second",         print_second,    NULL) \
         X(CMD_QUIT,         "quit",     "-",    "Exit the program safely",  quit,            NULL)
 
-typedef enum
-{
-    #define X(cmd_type, cmd_name, flags, description, func, data) cmd_type,
-    COMMANDS
-    #undef X
-} cmd_type_t;
-
-#ifndef _CMD_DESCR_
-#define _CMD_DESCR_
-// Generate command descriptor array
-cmd_ptr_t command_descriptor[] = {
-        #define X(cmd_type, cmd_name, flags, description, func, data) { cmd_type, cmd_name, flags, description, func, data },
-        COMMANDS
-        #undef X
-        { 0, NULL, NULL, NULL, NULL, NULL }
-};
-
-#endif
-
+#include <cmd_desc_generator.h>
 
 #endif

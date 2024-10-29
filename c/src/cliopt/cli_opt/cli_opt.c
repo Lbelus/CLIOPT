@@ -4,10 +4,9 @@
 #include <cli_readline.h>
 #include <cli_parser.h>
 #include <cli_cgetopt.h>
-#include <cli_nstd.h>
-#include <cli_cmd.h>
-#include "../src/plugin/help/help.h"
-#include "../src/plugin/cmd/cmd.h"
+#include <cli_cmd_type.h>
+#include "../src/plugins/core/help/help.h"
+#include "../src/plugins/core/cmd/cmd.h"
 
 char* select_flags(char* token, cmd_ptr_t cmd_ptr_map[])
 {

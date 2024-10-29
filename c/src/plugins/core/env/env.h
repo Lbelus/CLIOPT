@@ -2,7 +2,7 @@
 #define _ENV_HEADER_
 
 #include <cli_cgetopt.h>
-#include <cli_cmd.h> 
+#include <cli_cmd_type.h> 
 #include <stdio.h>
 
 

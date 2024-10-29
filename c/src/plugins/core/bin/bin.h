@@ -1,7 +1,6 @@
 #ifndef _BIN_HEADER_
 #define _BIN_HEADER_
 
-// #include <common_header.h>
 #include <cli_parser.h>
 #include <sys/stat.h>
 #include <sys/types.h>

@@ -1,10 +1,7 @@
 #ifndef _GENERIC_HEADER_
 #define _GENERIC_HEADER_
 
-#include "../src/plugin/env/env.h"
-#include "../src/plugin/cmd/cmd.h"
-#include "../src/plugin/example_cmd/example.h"
-#include "../src/plugin/help/help.h"
+#include <plugins.h>
 
 #define GET_MACRO(_1, _2, _3, _4, NAME, ...) NAME
 
@@ -28,7 +25,5 @@
 )
 
 #define _generic_fn(...) GET_MACRO(__VA_ARGS__, __cmd4__, __cmd3__,__cmd2__, __cmd1__)(__VA_ARGS__)
-
-
 
 #endif

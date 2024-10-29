@@ -1,4 +1,4 @@
-#include "./cli_bin.h"
+#include "./bin.h"
 
 
 int env_var_chr(const char** env_copy, const char* env_des);
