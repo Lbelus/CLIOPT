@@ -2,6 +2,7 @@
 #define _MY_CMD_HEADER_
 
 #include <cli_cgetopt.h>
+#include <cmd_type_enum.h>
 #include <cli_cmd_type.h> 
 #include <stdio.h>
 #include <stdarg.h>

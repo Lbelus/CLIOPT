@@ -1,12 +1,15 @@
 #ifndef _GENERIC_HEADER_
 #define _GENERIC_HEADER_
 
+
+#include <cmd_type_enum.h>
 #include <plugins.h>
 
 #define GET_MACRO(_1, _2, _3, _4, NAME, ...) NAME
 
 #define __cmd1__(a) _Generic((a), \
-    cmd_ptr_t*: help, \
+    cmd_ptr_t*: a->type == CMD_HELP ? help:\
+                NULL, \
     default: NULL \
 )
 
