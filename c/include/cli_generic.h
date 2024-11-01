@@ -8,14 +8,14 @@
 #define GET_MACRO(_1, _2, _3, _4, NAME, ...) NAME
 
 #define __cmd1__(a) _Generic((a), \
-    cmd_ptr_t*: a->type == CMD_HELP ? help:\
-                NULL, \
+    cmd_ptr_t*:     a->type == CMD_HELP ? help:\
+                    NULL, \
     default: NULL \
 )
 
 #define __cmd2__(a, b) _Generic((a), \
-    my_getopt_t*: env, \
-    cmd_ptr_t*: env, \
+    my_getopt_t*:   (b != NULL && b->type == CMD_ENV) ? env : NULL, \
+    cmd_ptr_t*:     (b != NULL && b->type == CMD_ENV) ? env : NULL, \
     default: NULL \
 )
 
