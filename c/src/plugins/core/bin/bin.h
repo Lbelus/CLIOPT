@@ -1,7 +1,7 @@
 #ifndef _BIN_HEADER_
 #define _BIN_HEADER_
 
-#include <cli_parser.h>
+#include "../../../../include/cliopt/parser.h"
 #include <sys/stat.h>
 #include <sys/types.h>
 #include <sys/wait.h>

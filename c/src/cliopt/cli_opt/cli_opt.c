@@ -1,12 +1,13 @@
 #include <stdlib.h>
 #include <stdbool.h>
-#include <cli_libasm.h>
-#include <cli_readline.h>
-#include <cli_parser.h>
-#include <cli_cgetopt.h>
-#include <cli_cmd_type.h>
-#include "../src/plugins/core/help/help.h"
-#include "../src/plugins/core/cmd/cmd.h"
+#include "../../../include/cliopt/libasm.h"
+#include "../../../include/cliopt/readline.h"
+#include "../../../include/cliopt/parser.h"
+#include "../../../include/cliopt/cgetopt.h"
+#include "../../plugins/core/help/help.h"
+// #include "../../plugins/core/cmd/cmd.h"
+// #include "../../../include/cliopt/cmd_descriptor.h"
+int     execute_cmd(my_getopt_t* getopt_ptr, cmd_ptr_t cmd_ptr_map[]);
 
 char* select_flags(char* token, cmd_ptr_t cmd_ptr_map[])
 {

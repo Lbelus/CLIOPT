@@ -3,13 +3,14 @@
 
 #include <stdlib.h>
 #include <stdbool.h>
-#include <cli_libasm.h>
-#include <cli_readline.h>
-#include <cli_parser.h>
-#include <cli_cgetopt.h>
-#include <cli_nstd.h>
-#include <cli_cmd_type.h> 
-#include <cli_init.h>
+
+#include "./cliopt/libasm.h"
+#include "./cliopt/readline.h"
+#include "./cliopt/parser.h"
+#include "./cliopt/cgetopt.h"
+#include "./cliopt/nstd.h"
+#include "./cliopt/cmd_descriptor.h" 
+#include "./cliopt/init.h"
 
 int cliopt(cmd_ptr_t cmd_ptr_map[]);
 

@@ -2,8 +2,8 @@
 #define _GENERIC_HEADER_
 
 
-#include <cmd_type_enum.h>
-#include <plugins.h>
+#include "../cmd_type_enum.h"
+#include "../plugins.h"
 
 #define GET_MACRO(_1, _2, _3, _4, NAME, ...) NAME
 

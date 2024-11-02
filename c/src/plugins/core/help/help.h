@@ -1,8 +1,8 @@
 #ifndef _HELP_HEADER_
 #define _HELP_HEADER_
 
-#include <cli_cgetopt.h>
-#include <cli_cmd_type.h> 
+#include "../../../../include/cliopt/cgetopt.h"
+#include "../../../../include/cmd_descriptor.h"
 #include <stdarg.h>
 #include <stdio.h>
 

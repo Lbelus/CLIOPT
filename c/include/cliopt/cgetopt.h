@@ -5,7 +5,7 @@
 #include <stdio.h>
 #include <stdbool.h>
 
-#include <cli_libasm.h>
+#include "./libasm.h"
 
 #define BITMAP_SIZE 32
 

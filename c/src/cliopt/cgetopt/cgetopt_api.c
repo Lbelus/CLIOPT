@@ -1,4 +1,4 @@
-#include <cli_cgetopt.h>
+#include "../../../include/cliopt/cgetopt.h"
 
 void    free_str_array( my_getopt_t *getopt_ptr);
 int     flag_parser(int argc, const char** argv, const char* valid_args, my_getopt_t* getopt_ptr);

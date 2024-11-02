@@ -1,4 +1,4 @@
-#include <cli_cgetopt.h>
+#include "../../../include/cliopt/cgetopt.h"
 
 void count_str_array(int argc, const char** argv, my_getopt_t* getopt_ptr)
 {

@@ -3,7 +3,7 @@
 
 #include <stdbool.h>
 #include <stdlib.h>
-#include <cli_libasm.h>
+#include "./libasm.h"
 
 #define __SPACE_CHAR__   ' '
 #define MAX_INPUT_TOKENS 250

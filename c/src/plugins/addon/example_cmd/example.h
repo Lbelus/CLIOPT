@@ -1,8 +1,8 @@
 #ifndef _EXAMPLE_HEADER_
 #define _EXAMPLE_HEADER_
 
-#include <cli_cgetopt.h>
-#include <cli_cmd_type.h> 
+#include "../../../../include/cliopt/cgetopt.h"
+#include "../../../../include/cmd_descriptor.h" 
 #include <stdio.h>
 
 #define _PRINT_FIRST_   "ex1"
