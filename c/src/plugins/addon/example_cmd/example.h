@@ -2,7 +2,7 @@
 #define _EXAMPLE_HEADER_
 
 #include "../../../../include/cliopt/cgetopt.h"
-#include "../../../../include/cmd_descriptor.h" 
+#include "../../../../include/cliopt/cmd_descriptor.h" 
 #include <stdio.h>
 
 #define _PRINT_FIRST_   "ex1"

@@ -2,7 +2,7 @@
 #define _HELP_HEADER_
 
 #include "../../../../include/cliopt/cgetopt.h"
-#include "../../../../include/cmd_descriptor.h"
+#include "../../../../include/cliopt/cmd_descriptor.h"
 #include <stdarg.h>
 #include <stdio.h>
 

@@ -2,8 +2,8 @@
 #define _MY_CMD_HEADER_
 
 #include "../../../../include/cliopt/cgetopt.h"
-#include "../../../../include/cmd_type_enum.h"
-#include "../../../../include/cmd_descriptor.h"
+#include "../../../../include/cliopt/cmd_type_enum.h"
+#include "../../../../include/cliopt/cmd_descriptor.h"
 #include <stdio.h>
 #include <stdarg.h>
 

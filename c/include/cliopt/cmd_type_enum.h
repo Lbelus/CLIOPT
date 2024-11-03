@@ -2,7 +2,7 @@
 #ifndef CMD_TYPE_ENUM_H
 #define CMD_TYPE_ENUM_H
 
-#include "./commands_def.h"
+#include "../commands_def.h"
 
 #ifndef _CMD_TYPE_ENUM_
 #define _CMD_TYPE_ENUM

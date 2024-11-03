@@ -5,6 +5,6 @@
 
 #include "../commands_def.h"
 
-#include "../cmd_desc_generator.h"
+#include "./cmd_desc_generator.h"
 
 #endif
