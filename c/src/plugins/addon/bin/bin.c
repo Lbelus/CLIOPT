@@ -1,9 +1,22 @@
 #include "./bin.h"
 
-
-int env_var_chr(const char** env_copy, const char* env_des);
-const char* get_env_var(const char** env_copy, const char* env_des);
-
+const char* get_path(const char** env_copy)
+{
+    size_t len = _my_strlen(_PATH_STR_);
+    const char **env = env_copy;
+    size_t pos = 0;
+    while (*env)
+    {
+        if (_my_strncmp(*env, _PATH_STR_, len) == 0 && (*env)[len] == '=')
+        {
+            const char* env_ptr = env_copy[pos];
+            return env_ptr;
+        }
+        pos += 1;
+        env++;
+    }
+    return NULL;
+}
 
 void copy_from(char* dest, char* src, int* pos)
 {
@@ -143,7 +156,7 @@ int exec_bin(char** args, char** env)
     int index = 0;
     pid_t pid = fork();
     char cmd_path[PATH_MAX];
-    const char* path = get_env_var((const char**)env, _PATH_STR_);
+    const char* path = get_path((const char**)env);
     if (pid == 0)
     { /* child process */
         char **argv[] = {&args[1], NULL};

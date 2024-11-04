@@ -14,6 +14,6 @@
 int     execute_cmd(my_getopt_t* getopt_ptr, cmd_ptr_t cmd_ptr_map[]);
 int     quit(my_getopt_t* getopt_ptr);
 
-#include "../../../../include/cliopt/generic.h"
+#include "../../../../include/generic.h"
 
 #endif
