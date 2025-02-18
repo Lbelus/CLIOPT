@@ -1,0 +1,2 @@
+make debugc
+make debug

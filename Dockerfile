@@ -1,10 +1,7 @@
-# Use the latest version of Ubuntu as the base image
 FROM ubuntu:latest
 
-# Set environment variables to non-interactive (this prevents some prompts)
 ENV DEBIAN_FRONTEND=non-interactive
 
-# Update package list and install essential packages
 RUN apt-get update && \
     apt-get install -y \
     build-essential \
@@ -22,11 +19,7 @@ RUN apt-get update && \
 RUN   apt-get autoremove -y && \
       apt-get clean
 
-# Reset environment variable
 ENV DEBIAN_FRONTEND=
 
-# Set the working directory
 WORKDIR /workspace
-
-# Set the default command
 CMD ["bash"]
