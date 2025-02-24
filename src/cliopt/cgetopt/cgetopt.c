@@ -1,6 +1,6 @@
 #include "../../../include/cliopt/cgetopt.h"
 
-void count_str_array(int argc, const char** argv, my_getopt_t* getopt_ptr)
+static void count_str_array(int argc, const char** argv, my_getopt_t* getopt_ptr)
 {
     int index = 1;
     while (index < argc)
@@ -13,7 +13,7 @@ void count_str_array(int argc, const char** argv, my_getopt_t* getopt_ptr)
     }
 }
 
-void fill_bool_array(bool* bool_arr, int len)
+static void fill_bool_array(bool* bool_arr, int len)
 {
     int index = 0;
     while (index < len)
@@ -31,7 +31,7 @@ void set_bitmap(bmp_t* bmp)
     }
 }
 
-void set_bit(bmp_t* bmp, int index, int value)
+static void set_bit(bmp_t* bmp, int index, int value)
 {
     if (value)
     {
@@ -43,7 +43,7 @@ void set_bit(bmp_t* bmp, int index, int value)
     }
 }
 
-void set_in_bmp(bmp_t* bmp, unsigned int index, int value)
+static void set_in_bmp(bmp_t* bmp, unsigned int index, int value)
 {
     unsigned int bmp_index = index / 8;
     unsigned int bit_index = index % 8;
@@ -70,7 +70,7 @@ void flag_state(char opt, my_getopt_t *getopt_ptr, const char** argv)
     }
 }
 
-void alloc_str_array(const char** argv, my_getopt_t *getopt_ptr)
+static void alloc_str_array(const char** argv, my_getopt_t *getopt_ptr)
 {
     int index = 1;
     int pos = 0;
@@ -85,7 +85,7 @@ void alloc_str_array(const char** argv, my_getopt_t *getopt_ptr)
     }
 }
 
-int opt_parser(const char** argv, const char* valid_args, my_getopt_t* getopt_ptr)
+static const int opt_parser(const char** argv, const char* valid_args, my_getopt_t* getopt_ptr)
 {
     if (argv[getopt_ptr->index][0] != __DASH_CHAR__)
     {
@@ -145,8 +145,7 @@ int flag_parser(int argc, const char** argv, const char* valid_args, my_getopt_t
     return EXIT_SUCCESS;
 }
 
-
-void free_str_array( my_getopt_t *getopt_ptr)
+void free_str_array(my_getopt_t *getopt_ptr)
 {
     int index = 0;
     while (index < getopt_ptr->nbr_str)

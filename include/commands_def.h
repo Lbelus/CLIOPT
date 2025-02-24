@@ -6,7 +6,7 @@
         /* One arg _GENERIC function with cmd_ptr_t */ \
         X(CMD_HELP,         "help",     "-",    "Display help",             NULL,            NULL) \
         /* Two arg _GENERIC function with my_getopt_t* and cmd_ptr_t */ \
-        X(CMD_ENV,          "env",      "-lud", "Display env",              NULL,            NULL) \
+        X(CMD_ENV,          "env",      "-laud", "Display env",              NULL,            NULL) \
         /* Two arg _GENERIC function with my_getopt_t* and cmd_ptr_t */ \
         X(CMD_BIN,          "bin",      "-",    "run bin file",             NULL,            NULL) \
         X(CMD_DISPLAY,      "display",  "-",    NULL,                       NULL,            ">") \

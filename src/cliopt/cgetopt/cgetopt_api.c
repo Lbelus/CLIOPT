@@ -48,6 +48,16 @@ int get_argc(const my_getopt_t* getopt_ptr)
     return getopt_ptr->argc;
 }
 
+const char** get_long_args(const my_getopt_t* getopt_ptr)
+{
+    return (const char**)getopt_ptr->str_arr;
+}
+
+int get_long_arg_size(const my_getopt_t* getopt_ptr)
+{
+    return getopt_ptr->str_pos;
+}
+
 int is_flag_active(const my_getopt_t* getopt_ptr, unsigned char ch)
 {
     unsigned int index = (unsigned int)ch;

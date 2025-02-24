@@ -43,12 +43,13 @@ typedef struct s_my_getopt
 #define __SPACE_CHAR__          ' '
 #define __DASH_CHAR__           '-'
 
-void         init_getopt(my_getopt_t* getopt_ptr, const char* valid_args);
-int          cgetopt(int argc, const char** argv, const char* valid_args, my_getopt_t* getopt_ptr);
-const char** get_argv(const my_getopt_t* getopt_ptr);
-int          get_argc(const my_getopt_t* getopt_ptr);
-int          is_flag_active(const my_getopt_t* getopt_ptr, unsigned char ch);
-void         free_opt(my_getopt_t* getopt_ptr);
-void         free_opt(my_getopt_t* getopt_ptr);
+void            init_getopt(my_getopt_t* getopt_ptr, const char* valid_args);
+int             cgetopt(int argc, const char** argv, const char* valid_args, my_getopt_t* getopt_ptr);
+const char**    get_argv(const my_getopt_t* getopt_ptr);
+int             get_argc(const my_getopt_t* getopt_ptr);
+int             is_flag_active(const my_getopt_t* getopt_ptr, unsigned char ch);
+void            free_opt(my_getopt_t* getopt_ptr);
+const char**    get_long_args(const my_getopt_t* getopt_ptr);
+int             get_long_arg_size(const my_getopt_t* getopt_ptr);
 
 #endif
