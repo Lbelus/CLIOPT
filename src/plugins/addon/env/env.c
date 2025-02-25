@@ -55,48 +55,6 @@ char** rm_env_var(char** env_copy, const char* env_des)
     return env_copy;
 }
 
-int env_var_chr(const char** env_copy, const char* env_des)
-{
-    size_t len = _my_strlen(env_des);
-    const char **env = env_copy;
-    size_t pos = 0;
-    while (*env)
-    {
-        if (_my_strncmp(*env, env_des, len) == 0)
-        {
-            return pos;
-        }
-        pos += 1;
-        env++;
-    }
-    return -1;
-}
-
-// char** update_env(char** env_copy, const char* env_var)
-// {
-//     char* env_des = _my_strchr(env_var, '=');
-//     int index = 0;
-//     if (env_des == NULL)
-//     {
-//         return NULL;
-//     }
-//     int len = _my_strlen(env_var);
-//     index = env_var_chr((const char**)env_copy, env_des);
-//     printf("index:%i\n", index);
-//     if (index >= 0)
-//     {
-//         printf("here\n");
-//         free(env_copy[index]);
-//         env_copy[index] = malloc(sizeof(char) * len + 1);
-//         _my_strcpy(env_copy[index], env_var);
-//     }
-//     else
-//     {
-//         env_copy = add_env_var(env_copy, env_var);
-//     }
-//     return env_copy;
-// }
-
 int indexof(const char* str, char ch)
 {
     int index = 0;
@@ -112,8 +70,7 @@ int indexof(const char* str, char ch)
     return -1;
 }
 
-
-char** update_env(char** env_copy, char* env_des)
+char** update_env(char** env_copy, const char* env_des)
 {
     int pos = indexof(env_des, '=');
     if (pos == -1)
@@ -148,36 +105,27 @@ int env(my_getopt_t* getopt_ptr, cmd_ptr_t* cf_ptr)
             printf("%s\n", *env);
             env++;
         }
+        return EXIT_SUCCESS;
     }
+    const char** cpy_args = get_long_args(getopt_ptr);
+    if (cpy_args[1] == NULL)
+    {
+        printf("Error: Missing environment argument");
+        return EXIT_FAILURE;
+    }
+    if (is_flag_active(getopt_ptr, 'd'))
+    {
+        cf_ptr->data = rm_env_var(env, cpy_args[1]);
+        return EXIT_SUCCESS;
+    }
+    else if (_my_strchr(cpy_args[1], '=') == NULL)
+    {
+        printf("Argument is incomplete: Missing '=' operator \n");
+        return EXIT_FAILURE;
+    } 
     else if (is_flag_active(getopt_ptr, 'a'))
     {
-        printf("a is true\n");
-        const char** cpy_args = get_long_args(getopt_ptr);
-        if (cpy_args[1] == NULL)
-        {
-            printf("Error: Missing environment argument");
-            return EXIT_FAILURE;
-        }
-        else
-        {
-            printf("adding env var: %s\n", cpy_args[1]);
-            cf_ptr->data = update_env(env, cpy_args[1]);
-        }
-    }
-    else if (is_flag_active(getopt_ptr, 'd'))
-    {
-        printf("d is true\n");
-        const char** cpy_args = get_long_args(getopt_ptr);
-        if (cpy_args[1] == NULL)
-        {
-            printf("Error: Missing environment argument");
-            return EXIT_FAILURE;
-        }
-        else
-        {
-            printf("rm var: %s\n", cpy_args[1]);
-            cf_ptr->data = rm_env_var(env, cpy_args[1]);
-        }
+        cf_ptr->data = update_env(env, cpy_args[1]);
     }
     return EXIT_SUCCESS;
 }
@@ -200,6 +148,22 @@ char** copy_env(char** env)
     return cpy_env;
 }
 
+int env_var_chr(const char** env_copy, const char* env_des)
+{
+    size_t len = _my_strlen(env_des);
+    const char **env = env_copy;
+    size_t pos = 0;
+    while (*env)
+    {
+        if (_my_strncmp(*env, env_des, len) == 0)
+        {
+            return pos;
+        }
+        pos += 1;
+        env++;
+    }
+    return -1;
+}
 
 const char* get_env_var(const char** env_copy, const char* env_des)
 {
